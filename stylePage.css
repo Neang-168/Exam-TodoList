@@ -4,16 +4,21 @@ body {
   margin: 0;
 }
 .container {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-  /* display: flex; */
-  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: 40px;
 }
+.container-create {
+  max-width: 400px; /* nice small card width */
+  margin: 40px auto; /* center horizontally */
+  padding: 20px; /* inner spacing */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
 .head-text {
   font-family: "Times New Roman", Times, serif;
   display: flex;
@@ -26,18 +31,22 @@ body {
 .lb-label {
   font-weight: bold;
   display: block;
-  text-align: center;
-  justify-content: center;
+  text-align: start;
+  justify-content: start;
 }
 .txt-list {
   margin-top: 10px;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
+  color: rgb(9, 9, 139);
   font-size: 25px;
 }
 .add-task-form {
   display: flex;
   gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .add-task-form input[type="text"] {
@@ -65,15 +74,116 @@ input[type="date"]:focus {
 input[type="date"]::placeholder {
   color: #999;
 }
+.search {
+  gap: 200px;
+  margin-left: 110px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 5px; */
+  flex-wrap: wrap; /* responsive */
+}
+
+.search input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.search input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.search button:hover {
+  background-color: #0056b3;
+}
 
 .btn-add-task {
-  background: #4f4dc0;
+  background: rgb(3, 3, 128);
   border-radius: 10px;
   padding: 10px 20px;
   color: white;
   font-weight: bold;
   border: none;
   cursor: pointer;
+  margin-left: 250px;
+}
+.btn-create-task {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #0357b1; /* Blue background */
+  color: #fff;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+.btn-back {
+  padding: 8px 12px;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+tr.completed {
+  /* background-color: #d4edda; */
+  color: #155724;
+}
+
+tr.completed td {
+  text-decoration: line-through;
+}
+tr.inprocess {
+  /* background-color: #d4edda; */
+  color: blue;
+}
+
+select#status {
+  padding: 8px 25px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select#status:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+.select-status {
+  padding: 8px 25px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select-status:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  outline: none;
 }
 
 .task-list {
@@ -103,7 +213,6 @@ input[type="date"]::placeholder {
   color: blue;
 }
 
-/* Task text span */
 .task-item span {
   flex: 1 1 200px;
   min-width: 0;
@@ -112,29 +221,20 @@ input[type="date"]::placeholder {
   white-space: normal;
   overflow-wrap: break-word;
 }
-
-/* task-actions container */
 .task-actions {
   display: flex;
-  flex-direction: column; /* stack buttons vertically on small */
+  flex-direction: column;
   gap: 8px;
-  margin-top: 8px;
-  flex: 0 0 auto;
 }
 
-/* Buttons keep original size, no full width */
 .task-actions button {
-  padding: 5px 10px;
-  margin-left: 0; /* no extra left margin for vertical stacking */
-  border: none;
+  padding: 5px;
+  margin-left: 0;
   border-radius: 10px;
   cursor: pointer;
   color: white;
-  font-size: 14px;
-  width: auto; /* don't stretch */
-  white-space: nowrap; /* keep text on one line */
-  min-width: 80px; /* consistent minimum width */
-  box-sizing: border-box;
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 .task-actions .btn-complete {
@@ -149,12 +249,12 @@ input[type="date"]::placeholder {
 
 .task-actions .btn-delete {
   background-color: red;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .task-actions .btn-update {
-  background-color: rgb(75, 133, 221);
-  border-radius: 6px;
+  background-color: rgb(77, 75, 221);
+  border-radius: 5px;
 }
 
 .task-actions button:hover {
@@ -172,16 +272,35 @@ input[type="date"]::placeholder {
   max-width: 400px;
   margin: 30px auto;
 }
+.task-table {
+  margin-top: 3px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.task-table th,
+.task-table td {
+  border: 1px solid #ebe5e5;
+  padding: 8px;
+}
+
+.task-table th {
+  background-color: rgb(236, 233, 248);
+  text-align: left;
+  color: black;
+}
+
+.task-actions form {
+  display: inline-block;
+  margin: 0 2px;
+}
 @media (min-width: 600px) {
   .task-actions {
     flex-direction: row;
     flex-wrap: nowrap;
-  }
-  .task-actions button {
-    margin-left: 8px;
-  }
-  .task-actions button:first-child {
-    margin-left: 0;
   }
 
   .task-item span {

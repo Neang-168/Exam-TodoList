@@ -13,7 +13,7 @@
       <?= htmlspecialchars($errorMessage) ?>
     </p>
     <a href="<?= htmlspecialchars($backLink) ?>" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded">
-      Go Back
+      Go Back 
     </a>
   </div>
 </body>
