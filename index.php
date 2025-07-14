@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: Views/login-task.view.php'); // redirect to login page
+    exit();
+}
 require 'Partails/header.php';
 require 'Database.php';
 require 'Controllers/pagination.php';
@@ -9,10 +17,7 @@ require 'Partails/fillter-status.php';
 $status = isset($_GET['status']) ? trim($_GET['status']) : '';
 ?>
 <div>
-    <!-- <h1 class="head-text">
-        Todo List
-    </h1> -->
-    <?php require 'Partails/nav.php'?>
+    <?php require 'Partails/nav.php' ?>
 </div>
 <div class="container">
     <div>

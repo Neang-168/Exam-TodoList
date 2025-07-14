@@ -1,5 +1,8 @@
 <?php
 session_start();
+// $_SESSION['email'] = $email; // or username, whatever you use
+// header('Location: ../index.php'); // redirect to index.php after login
+// exit();
 require '../Database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,4 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
-
